@@ -7,4 +7,5 @@ export function updateUser(newUser){
             user: newUser
         }
     }
+    
 };

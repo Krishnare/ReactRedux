@@ -3,17 +3,28 @@ import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
 import { updateUser } from './actions/user-actions';
+import { updateProduct } from './actions/product-actions';
+import { watchFetchProducts } from './saga/saga';
 
 class App extends Component {
   constructor(props){
     super(props);
     this.onUpdateUser = this.onUpdateUser.bind(this);
+    this.onProductReducer = this.onProductReducer.bind(this);
+    // this.dogAction = this.dogAction.bind(this);
   }
   onUpdateUser(event){
       this.props.onUpdateUser(event.target.value);
   }
+
+  onProductReducer(){
+    this.props.onProductReducer('tytytyty');
+  }
+  // dogAction(){
+  //   this.props.dogAction()
+  // }
   render() {
-    console.log( this.props.user )
+    console.log( this.props )
     return (
       <div className="App">
         <header className="App-header">
@@ -21,19 +32,23 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <input onChange = { this.onUpdateUser } /> { this.props.user } 
+          <input onChange = { this.onUpdateUser } /> { this.props.user }
+          <div onClick={ this.dogAction }> Action </div>
 
         </header>
       </div>
     );
   }
 }
-const mapStateToProps = state => ({
-  products: state.products,
-  user: state.user
+const mapStateToProps = dispatch => ({
+  products: dispatch.products,
+  user: dispatch.user,
+  //dogAction: requestDog
 });
 
 const mapActionsToProp = {
-  onUpdateUser: updateUser
+  onUpdateUser: updateUser,
+  onProductReducer: updateProduct,
+  //dogAction: requestDog
 }
 export default connect(mapStateToProps, mapActionsToProp) (App);

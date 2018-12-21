@@ -1,10 +1,26 @@
-export const PRODUCT_REDUCER = 'product: productReducer';
+export const PRODUCT_REDUCER  = 'products: updateProduct';
+const CHOOSE_COLOR = 'CHOOSE_COLOR';
+const CHANGE_UI = 'CHANGE_UI';
 
-export default function updateProduct (newState){
+const chooseColor = (color) => ({
+    type: CHOOSE_COLOR,
+    payload: {
+      color,
+    },
+  });
+  
+  const changeUI = (color) => ({
+    type: CHANGE_UI,
+    payload: {
+      color,
+    },
+  });
+
+export function updateProduct(newStateOne){
     return {
-        type: PRODUCT_REDUCER,
+        type: PRODUCT_REDUCER, 
         payload: {
-            product: newState
+            product: newStateOne
         }
     }
 }
